@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/SoundLearn-sound-identification-autism-learning/static/css/main.e6c13ad2.css",
+    "main.js": "/SoundLearn-sound-identification-autism-learning/static/js/main.1039297b.js",
+    "static/js/453.cbb9d422.chunk.js": "/SoundLearn-sound-identification-autism-learning/static/js/453.cbb9d422.chunk.js",
+    "index.html": "/SoundLearn-sound-identification-autism-learning/index.html",
+    "main.e6c13ad2.css.map": "/SoundLearn-sound-identification-autism-learning/static/css/main.e6c13ad2.css.map",
+    "main.1039297b.js.map": "/SoundLearn-sound-identification-autism-learning/static/js/main.1039297b.js.map",
+    "453.cbb9d422.chunk.js.map": "/SoundLearn-sound-identification-autism-learning/static/js/453.cbb9d422.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.1039297b.js"
+  ]
+}
