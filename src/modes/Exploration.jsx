@@ -6,7 +6,7 @@ import { soundsData, getSoundsByCategory } from '../data/soundsData';
 import SoundCard from '../components/SoundCard';
 import CategoryCard from '../components/CategoryCard';
 
-function Exploration({ category, progress, updateProgress, goHome }) {
+function Exploration({ category, progress, updateProgress, goHome, customCards }) {
   const [selectedCategory, setSelectedCategory] = useState(category);
   const [playedSounds, setPlayedSounds] = useState([]);
 
@@ -99,10 +99,10 @@ function Exploration({ category, progress, updateProgress, goHome }) {
             </p>
           </div>
           <div className="text-7xl hidden md:block">
-            {selectedCategory === 'animals' ? '🦁' : 
-             selectedCategory === 'vehicles' ? '🚗' :
-             selectedCategory === 'nature' ? '🌊' :
-             selectedCategory === 'household' ? '🏠' : '👤'}
+            {selectedCategory === 'animals' ? '🦁' :
+              selectedCategory === 'vehicles' ? '🚗' :
+                selectedCategory === 'nature' ? '🌊' :
+                  selectedCategory === 'household' ? '🏠' : '👤'}
           </div>
         </div>
 
@@ -113,7 +113,7 @@ function Exploration({ category, progress, updateProgress, goHome }) {
             <span className="text-sm font-bold">{completionPercentage}%</span>
           </div>
           <div className="w-full bg-blue-900/30 rounded-full h-4">
-            <div 
+            <div
               className="bg-gradient-to-r from-yellow-400 to-orange-500 h-4 rounded-full transition-all duration-500"
               style={{ width: `${completionPercentage}%` }}
             ></div>
@@ -139,6 +139,25 @@ function Exploration({ category, progress, updateProgress, goHome }) {
           />
         ))}
       </div>
+
+      {/* Custom Cards Section (Only if they exist) */}
+      {customCards && customCards.length > 0 && selectedCategory === 'animals' && (
+        <div className="mt-12">
+          <h2 className="text-3xl font-black text-slate-800 mb-6 flex items-center gap-3">
+            <span className="text-4xl">✨</span> My Custom Cards
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {customCards.map(sound => (
+              <SoundCard
+                key={sound.id}
+                sound={sound}
+                // Custom cards don't track progress to avoid messing up the math
+                onPlay={() => { }}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Helper Text */}
       <div className="mt-8 bg-slate-100 border-4 border-slate-200 rounded-2xl p-6 text-center">

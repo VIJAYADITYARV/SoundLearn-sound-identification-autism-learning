@@ -4,47 +4,47 @@ import React from 'react';
 import { BookOpen, Brain, Layers, Zap, Award, Target, TrendingUp, BarChart3 } from 'lucide-react';
 
 function Home({ progress, navigateTo }) {
-  
+
   const categories = [
-    { 
-      id: 'animals', 
-      name: 'Animals', 
+    {
+      id: 'animals',
+      name: 'Animals',
       icon: '🦁',
       description: 'Dogs, Cats, Birds & More',
       color: 'from-amber-400 to-orange-500',
       bgColor: 'bg-amber-50',
       borderColor: 'border-amber-200'
     },
-    { 
-      id: 'vehicles', 
-      name: 'Vehicles', 
+    {
+      id: 'vehicles',
+      name: 'Vehicles',
       icon: '🚗',
       description: 'Cars, Trains, Planes',
       color: 'from-blue-400 to-cyan-500',
       bgColor: 'bg-blue-50',
       borderColor: 'border-blue-200'
     },
-    { 
-      id: 'nature', 
-      name: 'Nature', 
+    {
+      id: 'nature',
+      name: 'Nature',
       icon: '🌊',
       description: 'Rain, Wind, Thunder',
       color: 'from-emerald-400 to-teal-500',
       bgColor: 'bg-emerald-50',
       borderColor: 'border-emerald-200'
     },
-    { 
-      id: 'household', 
-      name: 'Household', 
+    {
+      id: 'household',
+      name: 'Household',
       icon: '🏠',
       description: 'Doorbell, Clock, Phone',
       color: 'from-violet-400 to-purple-500',
       bgColor: 'bg-violet-50',
       borderColor: 'border-violet-200'
     },
-    { 
-      id: 'human', 
-      name: 'Human Sounds', 
+    {
+      id: 'human',
+      name: 'Human Sounds',
       icon: '👤',
       description: 'Laughing, Crying, Clapping',
       color: 'from-pink-400 to-rose-500',
@@ -54,36 +54,36 @@ function Home({ progress, navigateTo }) {
   ];
 
   const modes = [
-    { 
-      id: 'exploration', 
-      name: 'Explore Sounds', 
+    {
+      id: 'exploration',
+      name: 'Explore Sounds',
       description: 'Listen and learn at your pace',
       icon: <BookOpen size={32} strokeWidth={2} />,
       gradient: 'from-blue-500 to-cyan-600',
       bgColor: 'bg-blue-50',
       textColor: 'text-blue-700'
     },
-    { 
-      id: 'quiz', 
-      name: 'Take Quiz', 
+    {
+      id: 'quiz',
+      name: 'Take Quiz',
       description: 'Test your sound knowledge',
       icon: <Brain size={32} strokeWidth={2} />,
       gradient: 'from-emerald-500 to-teal-600',
       bgColor: 'bg-emerald-50',
       textColor: 'text-emerald-700'
     },
-    { 
-      id: 'matching', 
-      name: 'Match Game', 
+    {
+      id: 'matching',
+      name: 'Match Game',
       description: 'Connect sounds to pictures',
       icon: <Layers size={32} strokeWidth={2} />,
       gradient: 'from-violet-500 to-purple-600',
       bgColor: 'bg-violet-50',
       textColor: 'text-violet-700'
     },
-    { 
-      id: 'memory', 
-      name: 'Memory Game', 
+    {
+      id: 'memory',
+      name: 'Memory Game',
       description: 'Find matching sound pairs',
       icon: <Zap size={32} strokeWidth={2} />,
       gradient: 'from-amber-500 to-orange-600',
@@ -101,7 +101,7 @@ function Home({ progress, navigateTo }) {
 
   return (
     <div className="max-w-7xl mx-auto space-y-10 pb-12">
-      
+
       {/* Welcome Hero */}
       <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-500 rounded-3xl p-10 text-white shadow-2xl mt-8">
         <div className="flex items-center justify-between">
@@ -153,6 +153,20 @@ function Home({ progress, navigateTo }) {
         </div>
       </div>
 
+      {/* Create Custom Card Banner */}
+      <div className="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-3xl p-8 text-white shadow-xl flex items-center justify-between mt-8">
+        <div>
+          <h2 className="text-3xl font-black mb-2">Create Your Own Card!</h2>
+          <p className="text-lg opacity-90">Design a custom sound card for your child.</p>
+        </div>
+        <button
+          onClick={() => navigateTo('create-card')}
+          className="px-6 py-3 bg-white text-indigo-600 rounded-xl font-bold hover:bg-indigo-50 transition-all shadow-lg transform hover:scale-105"
+        >
+          Create Custom Card
+        </button>
+      </div>
+
       {/* Sound Categories - Clean Grid */}
       <div>
         <h2 className="text-3xl font-bold text-slate-800 mb-6">Sound Categories</h2>
@@ -179,7 +193,7 @@ function Home({ progress, navigateTo }) {
       {/* Encouragement Banner */}
       <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 rounded-3xl p-8 text-center shadow-xl">
         <p className="text-3xl font-black text-white">
-           Keep Learning! You're Doing Great! 
+          Keep Learning! You're Doing Great!
         </p>
       </div>
     </div>

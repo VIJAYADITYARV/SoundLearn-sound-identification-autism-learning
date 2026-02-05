@@ -15,6 +15,9 @@ import Exploration from './modes/Exploration';
 import QuizMode from './modes/QuizMode';
 import MatchingGame from './modes/MatchingGame';
 import MemoryGame from './modes/MemoryGame';
+import SuggestSound from './components/SuggestSound'; // Keeping for history if needed
+import CreateSoundCard from './components/CreateSoundCard';
+import Footer from './components/Footer';
 
 function App() {
   // State management
@@ -22,19 +25,28 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState(null); // Which category is selected?
   const [progress, setProgress] = useState(loadProgress()); // Load saved progress
   const [showSettings, setShowSettings] = useState(false); // Show settings panel?
+  const [customCards, setCustomCards] = useState(() => {
+    const saved = localStorage.getItem('customCards');
+    return saved ? JSON.parse(saved) : [];
+  });
 
-  // Save progress whenever it changes
-  // useEffect(() => {
-    // saveProgress(progress);
-  // }, [progress]);
+  // Save custom cards whenever they change
+  useEffect(() => {
+    localStorage.setItem('customCards', JSON.stringify(customCards));
+  }, [customCards]);
 
   useEffect(() => {
-  resetProgress();
-}, []);
+    resetProgress();
+  }, []);
 
   // Update progress helper function
   const updateProgress = (updates) => {
     setProgress(prev => ({ ...prev, ...updates }));
+  };
+
+  // Add a new custom card
+  const addCustomCard = (card) => {
+    setCustomCards(prev => [...prev, { ...card, id: `custom-${Date.now()}` }]);
   };
 
   // Navigate to a different page
@@ -63,20 +75,21 @@ function App() {
 
   // Render the current page based on state
   const renderPage = () => {
-    switch(currentPage) {
+    switch (currentPage) {
       case 'home':
         return <Home progress={progress} navigateTo={navigateTo} />;
-      
+
       case 'exploration':
         return (
-          <Exploration 
+          <Exploration
             category={selectedCategory}
             progress={progress}
             updateProgress={updateProgress}
             goHome={goHome}
+            customCards={customCards}
           />
         );
-      
+
       case 'quiz':
         return (
           <QuizMode
@@ -86,7 +99,7 @@ function App() {
             goHome={goHome}
           />
         );
-      
+
       case 'matching':
         return (
           <MatchingGame
@@ -96,7 +109,7 @@ function App() {
             goHome={goHome}
           />
         );
-      
+
       case 'memory':
         return (
           <MemoryGame
@@ -106,19 +119,26 @@ function App() {
             goHome={goHome}
           />
         );
-      
+
+      case 'create-card':
+        return <CreateSoundCard goHome={goHome} addCustomCard={addCustomCard} />;
+
+      case 'suggest': // Kept for backward compatibility if needed
+        return <SuggestSound goHome={goHome} />;
+
       default:
         return <Home progress={progress} navigateTo={navigateTo} />;
     }
   };
 
   return (
-<div className={`min-h-screen ${progress.settings.highContrast ? 'bg-white' : 'bg-slate-50'}`}>      {/* Navigation Bar */}
-      <Navigation 
+    <div className={`min-h-screen ${progress.settings.highContrast ? 'bg-white' : 'bg-slate-50'}`}>      {/* Navigation Bar */}
+      <Navigation
         goHome={goHome}
         toggleSettings={toggleSettings}
         volume={progress.settings.volume}
         currentPage={currentPage}
+        navigateTo={navigateTo}
       />
 
       {/* Settings Panel */}
@@ -126,17 +146,17 @@ function App() {
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
             <h2 className="text-3xl font-bold mb-6 text-gray-800">Settings</h2>
-            
+
             {/* Volume Control */}
             <div className="mb-6">
               <label className="flex items-center text-lg font-semibold text-gray-700 mb-2">
                 <Volume2 className="mr-2" size={24} />
                 Volume: {Math.round(progress.settings.volume * 100)}%
               </label>
-              <input 
-                type="range" 
-                min="0" 
-                max="1" 
+              <input
+                type="range"
+                min="0"
+                max="1"
                 step="0.1"
                 value={progress.settings.volume}
                 onChange={(e) => handleSettingsChange({ volume: parseFloat(e.target.value) })}
@@ -148,11 +168,10 @@ function App() {
             <div className="mb-6">
               <button
                 onClick={() => handleSettingsChange({ highContrast: !progress.settings.highContrast })}
-                className={`w-full p-4 rounded-xl font-semibold text-lg transition-all ${
-                  progress.settings.highContrast 
-                    ? 'bg-gray-800 text-white' 
-                    : 'bg-gray-200 text-gray-800'
-                }`}
+                className={`w-full p-4 rounded-xl font-semibold text-lg transition-all ${progress.settings.highContrast
+                  ? 'bg-gray-800 text-white'
+                  : 'bg-gray-200 text-gray-800'
+                  }`}
               >
                 {progress.settings.highContrast ? <Moon className="inline mr-2" /> : <Sun className="inline mr-2" />}
                 High Contrast: {progress.settings.highContrast ? 'ON' : 'OFF'}
@@ -167,11 +186,10 @@ function App() {
                   <button
                     key={size}
                     onClick={() => handleSettingsChange({ textSize: size })}
-                    className={`flex-1 p-3 rounded-lg font-semibold capitalize transition-all ${
-                      progress.settings.textSize === size
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-200 text-gray-800'
-                    }`}
+                    className={`flex-1 p-3 rounded-lg font-semibold capitalize transition-all ${progress.settings.textSize === size
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-gray-200 text-gray-800'
+                      }`}
                   >
                     {size}
                   </button>
@@ -183,11 +201,10 @@ function App() {
             <div className="mb-6">
               <button
                 onClick={() => handleSettingsChange({ reducedMotion: !progress.settings.reducedMotion })}
-                className={`w-full p-4 rounded-xl font-semibold text-lg transition-all ${
-                  progress.settings.reducedMotion 
-                    ? 'bg-green-500 text-white' 
-                    : 'bg-gray-200 text-gray-800'
-                }`}
+                className={`w-full p-4 rounded-xl font-semibold text-lg transition-all ${progress.settings.reducedMotion
+                  ? 'bg-green-500 text-white'
+                  : 'bg-gray-200 text-gray-800'
+                  }`}
               >
                 Reduced Motion: {progress.settings.reducedMotion ? 'ON' : 'OFF'}
               </button>
@@ -205,10 +222,9 @@ function App() {
       )}
 
       {/* Main Content Area */}
-      <main className={`container mx-auto px-4 py-6 ${
-        progress.settings.textSize === 'small' ? 'text-base' : 
+      <main className={`container mx-auto px-4 py-6 ${progress.settings.textSize === 'small' ? 'text-base' :
         progress.settings.textSize === 'large' ? 'text-xl' : 'text-lg'
-      }`}>
+        }`}>
         {renderPage()}
       </main>
 
@@ -221,6 +237,7 @@ function App() {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 }
