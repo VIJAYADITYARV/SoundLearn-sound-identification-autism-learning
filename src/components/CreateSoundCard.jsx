@@ -1,7 +1,7 @@
 // CreateSoundCard.jsx - specific form to creating a custom learning card
 // Refactored to Class Component for Lab Requirement
 import React, { Component } from 'react';
-import { Palette, Type, Smile, Save, Layout, Volume2 } from 'lucide-react';
+import { Type, Save, Layout, Volume2 } from 'lucide-react';
 import SoundCard from './SoundCard';
 import { getAllSounds } from '../data/soundsData';
 

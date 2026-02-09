@@ -1,6 +1,6 @@
 // MatchingGame.jsx - Match sounds to images game
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ArrowLeft, Trophy, Volume2 } from 'lucide-react';
 import { soundsData, getSoundsByCategory } from '../data/soundsData';
 import { playSound } from '../utils/soundUtils';
@@ -44,7 +44,7 @@ function MatchingGame({ category, progress, updateProgress, goHome }) {
               human: { icon: '👤', bg: 'bg-pink-50', border: 'border-pink-300' }
             };
             const info = categoryInfo[cat];
-            
+
             return (
               <button
                 key={cat}
@@ -65,7 +65,7 @@ function MatchingGame({ category, progress, updateProgress, goHome }) {
   }
 
   // Initialize game
-  function initializeGame(cat){
+  function initializeGame(cat) {
     const sounds = getSoundsByCategory(cat);
     setCards(sounds);
     setMatchedPairs([]);
@@ -79,7 +79,7 @@ function MatchingGame({ category, progress, updateProgress, goHome }) {
   // Handle sound card click
   const handleSoundClick = (sound) => {
     if (matchedPairs.includes(sound.id)) return;
-    
+
     setSelectedSound(sound);
     playSound(sound.sound);
 
@@ -92,7 +92,7 @@ function MatchingGame({ category, progress, updateProgress, goHome }) {
   // Handle image card click
   const handleImageClick = (sound) => {
     if (matchedPairs.includes(sound.id)) return;
-    
+
     setSelectedImage(sound);
 
     // If sound already selected, check match
@@ -141,7 +141,7 @@ function MatchingGame({ category, progress, updateProgress, goHome }) {
           <p className="text-3xl font-bold mb-8">
             You matched all {cards.length} pairs!
           </p>
-          
+
           <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 mb-8">
             <p className="text-2xl font-bold">Score: {score} points</p>
             <p className="text-lg mt-2">Attempts: {attempts}</p>
@@ -211,19 +211,18 @@ function MatchingGame({ category, progress, updateProgress, goHome }) {
             {cards.map(sound => {
               const isMatched = matchedPairs.includes(sound.id);
               const isSelected = selectedSound?.id === sound.id;
-              
+
               return (
                 <button
                   key={`sound-${sound.id}`}
                   onClick={() => handleSoundClick(sound)}
                   disabled={isMatched}
-                  className={`w-full p-6 rounded-2xl font-bold text-lg transition-all ${
-                    isMatched 
-                      ? 'bg-green-100 border-4 border-green-500 opacity-50 cursor-not-allowed' 
+                  className={`w-full p-6 rounded-2xl font-bold text-lg transition-all ${isMatched
+                      ? 'bg-green-100 border-4 border-green-500 opacity-50 cursor-not-allowed'
                       : isSelected
-                      ? 'bg-blue-500 border-4 border-blue-700 text-white shadow-xl scale-105'
-                      : 'bg-white border-4 border-slate-300 hover:border-blue-400 hover:shadow-lg hover:scale-102'
-                  }`}
+                        ? 'bg-blue-500 border-4 border-blue-700 text-white shadow-xl scale-105'
+                        : 'bg-white border-4 border-slate-300 hover:border-blue-400 hover:shadow-lg hover:scale-102'
+                    }`}
                 >
                   <div className="flex items-center justify-center gap-3">
                     <Volume2 size={24} />
@@ -242,19 +241,18 @@ function MatchingGame({ category, progress, updateProgress, goHome }) {
             {cards.map(sound => {
               const isMatched = matchedPairs.includes(sound.id);
               const isSelected = selectedImage?.id === sound.id;
-              
+
               return (
                 <button
                   key={`image-${sound.id}`}
                   onClick={() => handleImageClick(sound)}
                   disabled={isMatched}
-                  className={`${sound.color} p-6 rounded-2xl border-4 transition-all ${
-                    isMatched 
-                      ? 'border-green-500 opacity-50 cursor-not-allowed' 
+                  className={`${sound.color} p-6 rounded-2xl border-4 transition-all ${isMatched
+                      ? 'border-green-500 opacity-50 cursor-not-allowed'
                       : isSelected
-                      ? 'border-blue-700 shadow-xl scale-105'
-                      : 'border-slate-300 hover:border-blue-400 hover:shadow-lg hover:scale-105'
-                  }`}
+                        ? 'border-blue-700 shadow-xl scale-105'
+                        : 'border-slate-300 hover:border-blue-400 hover:shadow-lg hover:scale-105'
+                    }`}
                 >
                   <div className="text-6xl mb-2">{sound.emoji}</div>
                   <p className="text-lg font-black text-slate-800">{sound.name}</p>

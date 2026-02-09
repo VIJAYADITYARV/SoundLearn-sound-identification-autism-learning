@@ -1,7 +1,7 @@
 // Home.jsx - Friendly Professional Balance
 
 import React from 'react';
-import { BookOpen, Brain, Layers, Zap, Award, Target, TrendingUp, BarChart3 } from 'lucide-react';
+import { BookOpen, Brain, Layers, Zap, Award, Target, TrendingUp, BarChart3, Calculator } from 'lucide-react';
 
 function Home({ progress, navigateTo }) {
 
@@ -89,6 +89,15 @@ function Home({ progress, navigateTo }) {
       gradient: 'from-amber-500 to-orange-600',
       bgColor: 'bg-amber-50',
       textColor: 'text-amber-700'
+    },
+    {
+      id: 'maths-learning',
+      name: 'Maths Learning',
+      description: 'Count and add with pictures',
+      icon: <Calculator size={32} strokeWidth={2} />,
+      gradient: 'from-pink-500 to-rose-600',
+      bgColor: 'bg-pink-50',
+      textColor: 'text-pink-700'
     }
   ];
 
@@ -137,8 +146,13 @@ function Home({ progress, navigateTo }) {
             <button
               key={mode.id}
               onClick={() => navigateTo(mode.id, 'animals')}
-              className={`group ${mode.bgColor} border-4 ${mode.borderColor} rounded-3xl p-8 hover:shadow-2xl transition-all duration-200 text-left hover:scale-105 transform`}
+              className={`group ${mode.bgColor} border-4 ${mode.borderColor} rounded-3xl p-8 hover:shadow-2xl transition-all duration-200 text-left hover:scale-105 transform relative overflow-hidden`}
             >
+              {mode.id === 'maths-learning' && (
+                <div className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-bl-xl shadow-md">
+                  NEW!
+                </div>
+              )}
               <div className={`inline-flex p-4 bg-gradient-to-br ${mode.gradient} rounded-2xl text-white mb-4 shadow-lg group-hover:shadow-xl transition-shadow`}>
                 {mode.icon}
               </div>

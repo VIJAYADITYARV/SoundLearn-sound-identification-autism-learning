@@ -1,6 +1,6 @@
 // QuizMode.jsx - Quiz mode with difficulty levels and hints
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ArrowLeft, HelpCircle, CheckCircle, XCircle, Star, Trophy } from 'lucide-react';
 import { soundsData, getSoundsByCategory, getAllSounds } from '../data/soundsData';
 import { playSound } from '../utils/soundUtils';
@@ -54,7 +54,7 @@ function QuizMode({ category, progress, updateProgress, goHome }) {
               human: { icon: '👤', bg: 'bg-pink-50', border: 'border-pink-300' }
             };
             const info = categoryInfo[cat];
-            
+
             return (
               <button
                 key={cat}
@@ -123,9 +123,9 @@ function QuizMode({ category, progress, updateProgress, goHome }) {
         .filter(s => s.id !== correctSound.id)
         .sort(() => Math.random() - 0.5)
         .slice(0, settings.options - 1);
-      
+
       const options = [...wrongSounds, correctSound].sort(() => Math.random() - 0.5);
-      
+
       quizQuestions.push({
         correctSound,
         options,
@@ -190,7 +190,7 @@ function QuizMode({ category, progress, updateProgress, goHome }) {
           <p className="text-3xl font-bold mb-8">
             You scored {score} out of {questions.length}
           </p>
-          
+
           <div className="flex items-center justify-center gap-2 mb-8">
             {[...Array(5)].map((_, i) => (
               <Star
@@ -269,7 +269,7 @@ function QuizMode({ category, progress, updateProgress, goHome }) {
         <h2 className="text-3xl font-black mb-6 text-center">
           What sound is this?
         </h2>
-        
+
         <button
           onClick={playQuestionSound}
           className="w-full bg-white/20 backdrop-blur-sm border-4 border-white/40 rounded-2xl p-8 hover:bg-white/30 transition-all mb-6"
@@ -301,7 +301,7 @@ function QuizMode({ category, progress, updateProgress, goHome }) {
       <div className={`grid grid-cols-2 ${difficultySettings[difficulty].options > 4 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-4 mb-8`}>
         {currentQ.options.map(sound => {
           let cardClass = `${sound.color} border-4 border-slate-300 rounded-2xl p-6 transition-all cursor-pointer`;
-          
+
           if (showResult) {
             if (sound.id === currentQ.correctSound.id) {
               cardClass = 'bg-green-100 border-4 border-green-500 rounded-2xl p-6';
@@ -323,7 +323,7 @@ function QuizMode({ category, progress, updateProgress, goHome }) {
             >
               <div className="text-5xl mb-3">{sound.emoji}</div>
               <p className="text-lg font-black text-slate-800">{sound.name}</p>
-              
+
               {showResult && sound.id === currentQ.correctSound.id && (
                 <div className="mt-2">
                   <CheckCircle className="text-green-600 mx-auto" size={32} />

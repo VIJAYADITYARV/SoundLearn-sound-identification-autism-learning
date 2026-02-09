@@ -1,12 +1,12 @@
 // App.jsx - Main application component
 
 import React, { useState, useEffect } from 'react';
-import { Volume2, Settings, Moon, Sun } from 'lucide-react';
+import { Volume2, Moon, Sun } from 'lucide-react';
 
 import { resetProgress } from './utils/storageUtils';
 
 // Import utility functions
-import { loadProgress, saveProgress, updateSettings } from './utils/storageUtils';
+import { loadProgress } from './utils/storageUtils';
 
 // Import components (we'll create these next)
 import Navigation from './components/Navigation';
@@ -17,6 +17,8 @@ import MatchingGame from './modes/MatchingGame';
 import MemoryGame from './modes/MemoryGame';
 import SuggestSound from './components/SuggestSound'; // Keeping for history if needed
 import CreateSoundCard from './components/CreateSoundCard';
+import MathLearning from './modes/MathLearning';
+import ProductInfo from './components/ProductInfo';
 import Footer from './components/Footer';
 
 function App() {
@@ -122,6 +124,18 @@ function App() {
 
       case 'create-card':
         return <CreateSoundCard goHome={goHome} addCustomCard={addCustomCard} />;
+
+      case 'maths-learning':
+        return (
+          <MathLearning
+            goHome={goHome}
+            updateProgress={updateProgress}
+            progress={progress}
+          />
+        );
+
+      case 'product-info':
+        return <ProductInfo goHome={goHome} />;
 
       case 'suggest': // Kept for backward compatibility if needed
         return <SuggestSound goHome={goHome} />;
