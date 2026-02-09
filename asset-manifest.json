@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/SoundLearn-sound-identification-autism-learning/static/css/main.a87399b2.css",
-    "main.js": "/SoundLearn-sound-identification-autism-learning/static/js/main.9524039d.js",
+    "main.css": "/SoundLearn-sound-identification-autism-learning/static/css/main.a20517cd.css",
+    "main.js": "/SoundLearn-sound-identification-autism-learning/static/js/main.d00db60a.js",
     "static/js/453.cbb9d422.chunk.js": "/SoundLearn-sound-identification-autism-learning/static/js/453.cbb9d422.chunk.js",
     "index.html": "/SoundLearn-sound-identification-autism-learning/index.html",
-    "main.a87399b2.css.map": "/SoundLearn-sound-identification-autism-learning/static/css/main.a87399b2.css.map",
-    "main.9524039d.js.map": "/SoundLearn-sound-identification-autism-learning/static/js/main.9524039d.js.map",
+    "main.a20517cd.css.map": "/SoundLearn-sound-identification-autism-learning/static/css/main.a20517cd.css.map",
+    "main.d00db60a.js.map": "/SoundLearn-sound-identification-autism-learning/static/js/main.d00db60a.js.map",
     "453.cbb9d422.chunk.js.map": "/SoundLearn-sound-identification-autism-learning/static/js/453.cbb9d422.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a87399b2.css",
-    "static/js/main.9524039d.js"
+    "static/css/main.a20517cd.css",
+    "static/js/main.d00db60a.js"
   ]
 }
