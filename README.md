@@ -2,6 +2,10 @@
 
 **SoundLearn** is an interactive, web-based educational application designed specifically for children with **Autism Spectrum Disorder (ASD)**. The platform addresses the challenge of auditory processing, cognitive development, and basic mathematical understanding by providing a safe, structured, and sensory-friendly environment.
 
+## 🌐 Live Deployment
+The application is deployed on GitHub Pages:
+[https://VIJAYADITYARV.github.io/SoundLearn-sound-identification-autism-learning/](https://VIJAYADITYARV.github.io/SoundLearn-sound-identification-autism-learning/)
+
 ## 🌟 Key Features
 
 ### 🧠 Core Learning Modes (Lab 1)
@@ -66,9 +70,6 @@ This project demonstrates mastery of the following React concepts:
 
 4.  Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## 🌐 Live Deployment
-The application is deployed on GitHub Pages:
-[https://VIJAYADITYARV.github.io/SoundLearn-sound-identification-autism-learning/](https://VIJAYADITYARV.github.io/SoundLearn-sound-identification-autism-learning/)
 
 ---
 *Created for Full Stack Lab Evaluation 2 - 20CSE313 | CB.SC.U4CSE23657*
