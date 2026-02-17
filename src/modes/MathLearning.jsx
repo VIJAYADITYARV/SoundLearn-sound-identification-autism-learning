@@ -1,6 +1,7 @@
 // MathLearning.jsx - Enhanced Maths based learning with multiple modes
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, CheckCircle, XCircle, Star, Calculator, Hash, Repeat, Scale, Volume2 } from 'lucide-react';
+import { trackAttempt, trackSession } from '../utils/analyticsUtils';
 
 function MathLearning({ goHome, updateProgress, progress }) {
     const [gameState, setGameState] = useState('menu'); // 'menu' | 'playing'
@@ -9,6 +10,7 @@ function MathLearning({ goHome, updateProgress, progress }) {
     const [streak, setStreak] = useState(0);
     const [currentProblem, setCurrentProblem] = useState(null);
     const [feedback, setFeedback] = useState(null); // 'correct' | 'incorrect'
+    const [sessionStart, setSessionStart] = useState(null);
 
     // Text to Speech Helper
     const speak = (text) => {
@@ -25,6 +27,7 @@ function MathLearning({ goHome, updateProgress, progress }) {
         setGameState('playing');
         setScore(0);
         setStreak(0);
+        setSessionStart(Date.now());
         generateProblem(mode);
     };
 
@@ -129,7 +132,12 @@ function MathLearning({ goHome, updateProgress, progress }) {
     };
 
     const handleAnswer = (selected) => {
-        if (selected === currentProblem.answer) {
+        const isCorrect = selected === currentProblem.answer;
+
+        // Track attempt in analytics
+        trackAttempt(isCorrect, null, 'maths-learning');
+
+        if (isCorrect) {
             setFeedback('correct');
             setScore(prev => prev + 10);
             setStreak(prev => prev + 1);
@@ -152,6 +160,16 @@ function MathLearning({ goHome, updateProgress, progress }) {
             setTimeout(() => setFeedback(null), 1000);
         }
     };
+
+    // Track session when leaving
+    useEffect(() => {
+        return () => {
+            if (sessionStart) {
+                const durationMinutes = (Date.now() - sessionStart) / 60000;
+                trackSession('maths-learning', durationMinutes);
+            }
+        };
+    }, [sessionStart]);
 
     // --- MENU COMPONENT ---
     if (gameState === 'menu') {

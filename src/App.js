@@ -19,6 +19,7 @@ import SuggestSound from './components/SuggestSound'; // Keeping for history if 
 import CreateSoundCard from './components/CreateSoundCard';
 import MathLearning from './modes/MathLearning';
 import ProductInfo from './components/ProductInfo';
+import Analytics from './components/Analytics';
 import Footer from './components/Footer';
 
 function App() {
@@ -136,6 +137,9 @@ function App() {
 
       case 'product-info':
         return <ProductInfo goHome={goHome} />;
+
+      case 'analytics':
+        return <Analytics goHome={goHome} progress={progress} />;
 
       case 'suggest': // Kept for backward compatibility if needed
         return <SuggestSound goHome={goHome} />;

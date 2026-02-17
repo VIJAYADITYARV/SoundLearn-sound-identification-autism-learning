@@ -124,7 +124,16 @@ function Home({ progress, navigateTo }) {
 
       {/* Stats Cards - Clear and Motivating */}
       <div>
-        <h2 className="text-3xl font-bold text-slate-800 mb-6">Your Progress</h2>
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-3xl font-bold text-slate-800">Your Progress</h2>
+          <button
+            onClick={() => navigateTo('analytics')}
+            className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-xl font-bold hover:from-indigo-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+          >
+            <BarChart3 size={20} />
+            <span>View Analytics</span>
+          </button>
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {stats.map((stat, index) => (
             <div key={index} className="bg-white border-4 border-slate-200 rounded-2xl p-6 hover:border-slate-300 transition-all hover:shadow-lg">
