@@ -2,7 +2,7 @@
 
 **SoundLearn** is an interactive, web-based educational application designed specifically for children with **Autism Spectrum Disorder (ASD)**. The platform addresses the challenge of auditory processing, cognitive development, and basic mathematical understanding by providing a safe, structured, and sensory-friendly environment.
 
-##  Key Features
+## 🌟 Key Features
 
 ### 🧠 Core Learning Modes (Lab 1)
 *   **Exploration Mode**: Stress-free discovery of sounds across categories (Animals, Vehicles, Nature, Household).
@@ -22,14 +22,22 @@ Based on autism research strategies (Errorless Learning & Token Economies), the 
 
 1.  **Errorless Learning Strategy**:
     *   **Concept**: Minimizes frustration by preventing mistakes during initial learning.
-    *   **Implementation**: Correct answers **pulse** and are fully visible, while wrong answers are **dimmed** and unclickable for the first 3 seconds. This guides the child to success before allowing independent testing.
+    *   **Implementation**: 
+        *   When a new problem appears, **wrong answers are ghosted (blurred & semi-transparent)** and cannot be clicked.
+        *   The **correct answer glows** with a pulsating green ring.
+        *   This state lasts for **3 seconds**, forcing the child to observe the correct answer first, building a "success-only" neural pathway before independent testing begins.
+
 2.  **Visual Token Economy**:
     *   **Concept**: Uses a visual reward system to sustain motivation.
-    *   **Implementation**: A **5-Star Token Board** fills up with every correct answer, turning abstract points into concrete visual progress.
+    *   **Implementation**: A **5-Star Token Board** fills up with every correct answer. This transforms abstract "points" into a concrete visual goal (filling the empty slots).
+
 3.  **Enhanced Interaction & Accessibility**:
-    *   **Keyboard Support**: Use keys `1`, `2`, `3` to select answers (improving motor accessibility).
-    *   **Achievement Certificate**: Upon completing the Token Board, a personalized **Certificate of Mastery** is generated.
-    *   **Screen Capture**: Parents can download the certificate as an image using the integrated `html2canvas` feature.
+    *   **Keyboard Support (String Events)**: 
+        *   Children with fine motor difficulties can use keys `1`, `2`, and `3` to select options instead of the mouse.
+        *   Visual hints ("Key 1") appear on buttons to guide this interaction.
+    *   **Screen Capture (Achievement)**: 
+        *   Upon completing the Token Board, a personalized **Certificate of Mastery** is generated.
+        *   A "Download Certificate" button uses `html2canvas` to capture the React component and save it as a high-quality PNG image for parents to print or keep.
 
 ### 📝 Product Information Page
 *   **Comprehensive Details**: A dedicated page showcasing product version, features, and target audience.
